@@ -25,7 +25,7 @@ var config = {
 // train input
 var trainName = $("train-name-input").val().trim();
 var destination =$("destination-input").val().trim();
-var firstTrain =$("first-train-input").val().trim(),"08/14/2018").format('lll');
+var firstTrain = moment($("first-train-input").val().trim(),"08/15/18/").format('lll');
 var frequency =$("train-frequency").val().trim();
 
 
@@ -72,8 +72,18 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(frequency)
 
     //
-    var trainStartPretty = moment.unix(trainStart).format("08/14/2018");
+   // var trainStartPretty = moment.unix(trainStart).format("08/14/2018");
 
     //create the new row
+    var newRow = $("<tr>").append(
+        $("<td>").text(trainName),
+        $("<td>").text(destination),
+        $("<td>").text(firstTrain),
+        $("<td>").text(frequency),
+        $("<td>").text(trainStartPretty),
+        
+      );
+      $("#table >tbody").append(newRow);
 
-    var 
+
+    });
